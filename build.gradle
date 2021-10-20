@@ -5,7 +5,8 @@ plugins {
 }
 
 group = 'com.bootcamp'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
+
 apply plugin: 'application'
 mainClassName = 'com.bootcamp.BootcampTelemedApplication'
 
@@ -14,8 +15,8 @@ repositories {
 }
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-freemarker'
-	compile 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly "org.springframework.boot:spring-boot-devtools"
 }
