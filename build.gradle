@@ -6,6 +6,8 @@ plugins {
 
 group = 'com.bootcamp'
 version = '0.0.1-SNAPSHOT'
+apply plugin: 'application'
+mainClassName = 'com.bootcamp.BootcampTelemedApplication'
 
 repositories {
 	mavenCentral()
@@ -20,13 +22,4 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-}
-
-jar {
-	manifest {
-		attributes(
-				'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
-				'Main-Class': 'com.bootcamp.BootcampTelemedApplication'
-		)
-	}
 }
