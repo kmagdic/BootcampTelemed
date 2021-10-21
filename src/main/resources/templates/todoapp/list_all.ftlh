@@ -3,11 +3,11 @@
 
 </head>
 <body>
-    <h3>List ToDo elemenata:</h3>
+    <h3>List ToDo items:</h3>
     <br/>
 
     <#list todoList as todo>
-         ${todo.timestamp?string["dd.MM.yyyy HH:mm"]} -  ${todo.text} <br/>
+         ${todo.timestamp?string["dd.MM.yyyy HH:mm"]} - ${todo.text} <br/>
     </#list>
 
     <br/><br/>

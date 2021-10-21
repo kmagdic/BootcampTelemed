@@ -16,7 +16,7 @@ public class ToDoController {
     @Autowired
     ToDoItemsInMemoryManager toDoItemsManager;
 
-    @PostConstruct // after construction of class is done
+    @PostConstruct // after construction of class by Spring is done
     public void init() {
         toDoItemsManager.getTodoList().add(new ToDoItem(new Date(), "Prvi test"));
         toDoItemsManager.getTodoList().add(new ToDoItem(new Date(), "Drugi test"));
