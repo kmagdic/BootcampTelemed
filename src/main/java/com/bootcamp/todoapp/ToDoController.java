@@ -18,12 +18,16 @@ public class ToDoController {
         todoList.add("Drugi test");
     }
 
+    @GetMapping("/todoapp/")
+    String root() {
+        return "redirect:/todoapp/enter_todo.html";
+    }
 
     @GetMapping("/todoapp/save")
     String save(@RequestParam String text) throws IOException {
-        System.out.println("New todo received: " + text);
+        System.out.println("New todo: " + text);
         todoList.add(text);
-        return("redirect:/list_all");
+        return "redirect:/todoapp/list_all";
     }
 
     @GetMapping("/todoapp/list_all")
