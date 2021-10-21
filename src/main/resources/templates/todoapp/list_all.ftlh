@@ -7,7 +7,7 @@
     <br/>
 
     <#list todoList as todo>
-        ${todo} <br/>
+         ${todo.timestamp?string["dd.MM.yyyy HH:mm"]} -  ${todo.text} <br/>
     </#list>
 
     <br/><br/>
