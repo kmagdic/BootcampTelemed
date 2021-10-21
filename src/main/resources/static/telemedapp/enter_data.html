@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Telemed</title>
 </head>
 <style>
     form{margin-left:20px;}
+    textarea {font-family: inherit; font-size: inherit;resize: none;}
 </style>
 <body>
 <form action="/telemedapp/save_data">
     <div class="container">
         <br><br>
         <label>Korisnik (e-mail):</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="email" name="email" placeholder="examle@example.com"><br><br><br>
+        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="email" name="email"
+               placeholder="examle@example.com"><br><br><br>
         <label>Sistolički tlak:</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure1" placeholder="120"><br><br>
+        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure1"
+               placeholder="120"><br><br>
         <label>Dijastolički tlak:</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure2" placeholder="50"><br><br><br>
+        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure2"
+               placeholder="50"><br><br><br>
         <label>Opis stanja</label><br>
-        <input style="margin-top:10px; padding-left:5px; width:200px; height:100px;" type="text" name="description" placeholder="Opis stanja"><br><br><br>
+        <textarea style="margin-top:10px; padding-left:5px; width:200px; height:100px;" name="description"
+                  placeholder="Opis stanja"></textarea><br><br><br>
         <input style="color:purple; background:white; border-color:purple;
     margin-left:30px; padding: 5px 35px;" type="submit" value="Pošalji">
         <br>
