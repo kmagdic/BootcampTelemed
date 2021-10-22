@@ -14,5 +14,12 @@ public class DatabaseManager {
         return recordList;
     }
 
-
+    public List<BloodPressureRecord> getPatientRecords(String currEmail) {
+        List<BloodPressureRecord> emailList = new ArrayList<BloodPressureRecord>();
+        for (BloodPressureRecord record : recordList) {
+            if (record.getEmail().equals(currEmail))
+                emailList.add(record);
+        }
+        return emailList;
+    }
 }

@@ -16,6 +16,7 @@ public class TelemedController {
 
     @Autowired
     DatabaseManager databaseManager;
+    String currMail;
 
     @PostConstruct
     public void init() {
@@ -27,33 +28,31 @@ public class TelemedController {
         return "redirect:/telemedapp/enter_data.html";
     }
 
-        @GetMapping("/telemedapp/save_data")
-        String save (
-                @RequestParam String email,
-                @RequestParam String bloodPressure1,
-                @RequestParam String bloodPressure2,
-                @RequestParam String description,
-                HttpServletResponse response) throws IOException {
-            System.out.println("You entered:\nEmail: " + email + "\n" +
-                    "Systolic pressure: " + bloodPressure1 + "\n" +
-                    "Diastolic pressure: " + bloodPressure2 + "\n" +
-                    "State: " + description);
+    @GetMapping("/telemedapp/save_data")
+    String save (
+            @RequestParam String email,
+            @RequestParam String bloodPressure1,
+            @RequestParam String bloodPressure2,
+            @RequestParam String description,
+            HttpServletResponse response) throws IOException {
+        System.out.println("You entered:\nEmail: " + email + "\n" +
+                "Systolic pressure: " + bloodPressure1 + "\n" +
+                "Diastolic pressure: " + bloodPressure2 + "\n" +
+                "State: " + description);
 
-            BloodPressureRecord record = new BloodPressureRecord(new Date(), email,bloodPressure1,bloodPressure2,description);
-                databaseManager.getRecordList().add(record);
+        currMail = email;
+        BloodPressureRecord record = new BloodPressureRecord(new Date(), email,bloodPressure1,bloodPressure2,description);
+        databaseManager.getRecordList().add(record);
 
-                return "redirect:/telemedapp/list_data";
-        }
-
-        @GetMapping("/telemedapp/list_data")
-        String listAll (Model model) throws IOException {
-            model.addAttribute("recordList", databaseManager.getRecordList());
-            return "/telemedapp/list_data";
-        }
-
-
-
-
+        return "redirect:/telemedapp/list_data";
     }
 
+    @GetMapping("/telemedapp/list_data")
+    String listAll (Model model) throws IOException {
 
+        model.addAttribute("mail", currMail);
+        model.addAttribute("recordList", databaseManager.getPatientRecords(currMail));
+        return "/telemedapp/list_data";
+
+    }
+}
