@@ -1,5 +1,5 @@
 
-package com.bootcamp.telemed;
+package com.bootcamp.telemedapp;
 
         import org.springframework.stereotype.Service;
 

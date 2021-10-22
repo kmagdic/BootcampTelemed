@@ -1,12 +1,10 @@
-package com.bootcamp.telemed;
+package com.bootcamp.telemedapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Date;
 
 
 @Controller
@@ -15,7 +13,7 @@ public class PatientControlled {
     @Autowired
     PatientMemoryManager patientMemoryManager;
 
-    @GetMapping("/telemed/add_patient")
+    @GetMapping("/telemedapp/add_patient")
     String save(@RequestParam String name,
                 @RequestParam String surname,
                 @RequestParam String email,
@@ -27,19 +25,22 @@ public class PatientControlled {
                 "Diastolic pressure: " + email + "\n" +
                 "Date: " + date);
 
-        return "redirect:/telemed/list_patients";
+        return "redirect:/telemedapp/list_patients";
     }
 
-    @GetMapping("/telemed/")
+    @GetMapping("/telemed_doctor/")
     String root() {
-        return "redirect:/telemed/doctorPatient.html";
+        return "redirect:/telemedapp/list_patients";
     }
 
 
-    @GetMapping("/telemed/list_patients")
+    @GetMapping("/telemedapp/list_patients")
     String listAll(Model model)  {
         model.addAttribute("patientList", patientMemoryManager.getpatientList());
-        System.out.println("asdas");
-        return "/telemed/list_patients_";
+        return "/telemedapp/list_patients_";
+
+    }@GetMapping("/telemedapp/selectPatient")
+    String select(Model model)  {
+        return "/telemedapp/select_patient";
     }
 }
