@@ -30,7 +30,7 @@ td {
 }
 </style>
 <body>
-<form action="/telemed/selectPatient">
+<form action="/telemedapp/selectPatient">
     <div class="container">
         <label><b>Odaberite pacijenta:</b></label>
         <table id="Patients">
@@ -51,7 +51,7 @@ td {
         </table>
     </div>
 </form>
-<form action="/telemed/add_patient">
+<form action="/telemedapp/add_patient">
     <div class="container">
         <label>Ime</label>
         <br>
