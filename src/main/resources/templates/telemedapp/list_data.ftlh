@@ -1,16 +1,31 @@
 <html>
 
-
 <body>
+
 List patient records:
 <br/>
+<p>Korisnik:</p>
 
-<#list recordList as record>
-${record.timestamp?string["dd.MM.yyyy HH:mm"]} -  ${record.email} - ${record.bloodPressure1} - ${record.bloodPressure2} - ${record.description} <br/>
+    ${mail}<br/>
 
-</#list>
+<table>
+    <tr>
+       <th>Datum</th>
+       <th>Sistolički tlak</th>
+       <th>Dijastolički tlak</th>
+       <th>Opis</th>
+    </tr>
+    <#list recordList as record>
+
+        <tr>
+            <td>${record.timestamp?string["dd.MM.yyyy HH:mm"]}</td>
+            <td>${record.bloodPressure1}</td>
+            <td>${record.bloodPressure2}</td>
+            <td>${record.description}</td>
+        </tr>
+    </#list>
+
 </table>
-
 </body>
 
 </html>
