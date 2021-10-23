@@ -40,7 +40,11 @@ public class PatientControlled {
         return "/telemedapp/list_patients_";
 
     }@GetMapping("/telemedapp/selectPatient")
-    String select(Model model)  {
+    String select(Model model, @RequestParam String email)  {
+        Patient p = patientMemoryManager.getPatientByEmail(email);
+
+        model.addAttribute("recordsList", patientMemoryManager.getRecordsForPatient(p));
+        model.addAttribute("patient", p);
         return "/telemedapp/select_patient";
     }
 }
