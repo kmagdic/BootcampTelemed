@@ -40,8 +40,17 @@ public class TelemedController {
                 "Diastolic pressure: " + bloodPressure2 + "\n" +
                 "State: " + description);
 
+        Patient p = patientMemoryManager.getPatientByEmail(email);
+
+        if(p == null) {
+            model.addAttribute("email", email);
+            return "redirect:/telemedapp/patient_not_found.ftlh";
+        }
+
         currMail = email;
         BloodPressureRecord record = new BloodPressureRecord(new Date(), email,bloodPressure1,bloodPressure2,description);
+        record.setPatient(p);
+        
         databaseManager.getRecordList().add(record);
 
         return "redirect:/telemedapp/list_data";
