@@ -3,7 +3,9 @@ package com.bootcamp.telemedapp;
 import com.bootcamp.telemedapp.model.BloodPressureRecord;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
 
 @Service
 public class RecordMemoryManager {

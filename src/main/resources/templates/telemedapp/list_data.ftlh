@@ -15,9 +15,11 @@
         <div class="header">
         <img class="logo" src="../telemedapp/logoMegi.png">
         </div>
-
         <h2>Korisnik:</h2>
             ${mail}<br/>
+        <div class="col-md-12">
+            <button type="button" onclick="history.back()" class="btn btn-secondary">Dodaj novi zapis</button>
+        </div>
         <h1>Zapisi pacijenta</h1>
 <table class="table table-striped table-hover">
      <thead><tr>
@@ -34,7 +36,6 @@
             <td>${record.description}</td>
         </tr>
     </#list>
-
 </table>
 </body>
 </html>
