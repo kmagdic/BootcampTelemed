@@ -1,5 +1,6 @@
 package com.bootcamp.telemedapp;
 
+import com.bootcamp.telemedapp.model.BloodPressureRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +13,17 @@ import java.io.IOException;
 import java.util.Date;
 
 @Controller
-public class TelemedController {
+public class PatientInterfaceController {
 
     @Autowired
-    DatabaseManager databaseManager;
+    RecordMemoryManager databaseManager;
     String currMail;
+
 
     @PostConstruct
     public void init() {
-        databaseManager.getRecordList().add(new BloodPressureRecord(new Date(), "email1", "Prvi tlak", "Drugi tlak", "Opis stanja"));
+        databaseManager.getRecordList().add(
+                new BloodPressureRecord(new Date(), "email1", "Prvi tlak", "Drugi tlak", "Opis stanja"));
     }
 
     @GetMapping("/telemedapp/")
@@ -41,6 +44,7 @@ public class TelemedController {
                 "State: " + description);
 
         currMail = email;
+
         BloodPressureRecord record = new BloodPressureRecord(new Date(), email,bloodPressure1,bloodPressure2,description);
         databaseManager.getRecordList().add(record);
 

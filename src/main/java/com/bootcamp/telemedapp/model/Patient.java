@@ -1,4 +1,4 @@
-package com.bootcamp.telemedapp;
+package com.bootcamp.telemedapp.model;
 
 public class Patient {
     private String name;

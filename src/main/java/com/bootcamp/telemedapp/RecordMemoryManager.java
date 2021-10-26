@@ -1,12 +1,13 @@
 package com.bootcamp.telemedapp;
 
+import com.bootcamp.telemedapp.model.BloodPressureRecord;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DatabaseManager {
+public class RecordMemoryManager {
 
     List<BloodPressureRecord> recordList = new ArrayList<BloodPressureRecord>();
 

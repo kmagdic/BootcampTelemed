@@ -1,4 +1,4 @@
-package com.bootcamp.telemedapp;
+package com.bootcamp.telemedapp.model;
 
 import java.util.Date;
 
