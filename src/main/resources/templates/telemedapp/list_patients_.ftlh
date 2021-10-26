@@ -2,84 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css">
-    <title>Korisnici</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Popis pacijenata</title>
+    	 <link rel="stylesheet" href="../telemedapp/style.css">
 </head>
-<style>
-form {
-  margin: 50px 20px 10px;
-}
-table{max-width: none;
-  height: 200px;
-  margin-top: 20px;
-  border: 1px solid black;}
-td {
-  border: 1px solid black;
-  text-align:center;
-}
 
-th {
-  border: 1px solid black;
-}
-
-table,
-th,
-td {
-  border-collapse: collapse;
-}
-</style>
 <body>
-<form action="/telemedapp/selectPatient">
-    <div class="container">
-        <label><b>Odaberite pacijenta:</b></label>
-        <table id="Patients">
-            <tr>
+<div class="container">
+<form action="/telemedapp/select_patient">
+        <div class="vieWForm">
+        <div class="header">
+        <img class="logo" src="../telemedapp/logoMegi.png">
+        <h1>Popis pacijenata</h1>
+        </div>
+
+        <table class="table table-striped table-hover" id="Patients">
+            <thead><tr>
                 <th>Ime i prezime</th>
                 <th>E-mail adresa</th>
                 <th>Datum rođenja</th>
                 <th>Akcija</th>
-            </tr>
+                 </tr></thead>
+
             <#foreach patient in patientList>
             <tr>
                 <td>${patient.name} ${patient.surname}</td>
                 <td>${patient.email}</td>
                 <td>${patient.date}</td>
-                <td><input type="submit" value="Odabir" style="width: 100px; height:25px;"></td>
+                <td><a class="btn btn-odabir" href="../telemedapp/select_patient?email=${patient.email}">Odabir</a></td>
             </tr>
             </#foreach>
+
         </table>
     </div>
 </form>
-<form action="/telemedapp/add_patient">
-    <div class="container">
-        <label>Ime</label>
-        <br>
-        <input style="margin-top:5px;" type="text" name="name">
-        <br>
-        <br>
-        <label>Prezime</label>
-        <br>
-        <input style="margin-top:5px;" type="text" name="surname">
-        <br>
-        <br>
-        <label>E-mail</label>
-        <br>
-        <input style="margin-top:5px;" type="email" name="email">
-        <br>
-        <br>
-        <label>Datum rođenja</label>
-        <br>
-        <input style="margin-top:5px;" type="date" name="date">
-        <br>
-        <br>
-        <input style="margin-left:20px; padding: 5px 15px; width:100px;
-        color:purple; background:white; border-color:purple;" type="submit" value="Dodaj">
 
+<form action="/telemedapp/add_patient">
+    <div class="enterForm">
+    <form class="row g-3" action="/telemedapp/save_data">
+
+            <div class="col-md-6">
+                <label class="form-label">Ime</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Prezime</label>
+                <input type="text" name="surname" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">E-mail</label>
+                <input type="email" name="email" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                 <label class="form-label">Datum rođenja</label>
+                 <input type="date" name="date" class="form-control">
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-secondary">Dodaj</button>
+            </div>
+        </div>
     </div>
 </form>
+</div>
+
 </body>
-
 </html>
-
 

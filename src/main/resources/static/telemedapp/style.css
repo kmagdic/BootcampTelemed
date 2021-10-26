@@ -1,0 +1,56 @@
+    .header {
+        background-color: #270202!Important;
+        padding: 15px;
+        overflow: hidden;
+        margin-bottom:15px;
+    }
+
+    .header .logo{
+        float: left;
+    }
+
+    .header h1 {
+        float: right;
+        color: white;
+        text-transform:uppercase;
+    }
+
+    thead {
+        background-color: #BDBDBD;
+    }
+
+    .container {
+        margin-top: 0px auto;
+        padding 10px;
+        height: 100%;}
+        textarea {
+        resize: none;
+        height: 70%;
+    }
+
+    .enterForm, .viewForm {
+        margin: 10px auto;
+        padding 10px;
+    }
+
+    .btn-secondary{
+        background-color:#ac1c44!Important;
+        margin-top:15px;
+        float: right;
+        border: none!Important;
+    }
+
+    .btn-odabir {
+        background-color: #ac1c44!Important;
+        color:white!Important;
+        float: right;
+        border: none!Important;
+    }
+
+    .btn-odabir:hover {
+        background-color: #000!Important;
+    }
+
+    .btn-secondary:hover{
+        background-color:#000!Important;
+    }

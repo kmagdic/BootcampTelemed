@@ -3,32 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Telemed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../telemedapp/style.css">
+    <title>Upis zapisa pacijenta</title>
 </head>
-<style>
-    form{margin-left:20px;}
-    textarea {font-family: inherit; font-size: inherit;resize: none;}
-</style>
+
 <body>
+
 <form action="/telemedapp/save_data">
     <div class="container">
-        <br><br>
-        <label>Korisnik (e-mail):</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="email" name="email"
-               placeholder="examle@example.com"><br><br><br>
-        <label>Sistolički tlak:</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure1"
-               placeholder="120"><br><br>
-        <label>Dijastolički tlak:</label><br>
-        <input style="margin-top:10px; padding:5px 0px 5px 5px; width:200px;" type="text" name="bloodPressure2"
-               placeholder="50"><br><br><br>
-        <label>Opis stanja</label><br>
-        <textarea style="margin-top:10px; padding-left:5px; width:200px; height:100px;" name="description"
-                  placeholder="Opis stanja"></textarea><br><br><br>
-        <input style="color:purple; background:white; border-color:purple;
-    margin-left:30px; padding: 5px 35px;" type="submit" value="Pošalji">
-        <br>
-        <br>
+        <div class="vieWForm">
+            <div class="header">
+                <img class="logo" src="../telemedapp/logoMegi.png">
+                <h1>Upis zapisa pacijenta</h1>
+            </div>
+        <form class="row g-3" action="/telemedapp/save_data">
+
+            <div class="col-md-12">
+                <label class="form-label">Korisnik (e-mail):</label>
+                <input type="email" name="email" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Sistolički tlak:</label>
+                <input type="text" name="bloodPressure1" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Dijastolički tlak:</label>
+                <input type="text" name="bloodPressure2" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Opis stanja</label>
+                <textarea name="description" class="form-control" rows="10" cols="30"></textarea>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-secondary">Dodaj</button>
+            </div>
+        </form>
+        </div>
     </div>
 </form>
 </body>
