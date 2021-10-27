@@ -7,15 +7,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.PostConstruct;
+
 
 @Controller
 public class DoctorInterfaceController {
 
     @Autowired
     PatientMemoryManager patientMemoryManager;
+
+    @Autowired
     RecordMemoryManager databaseManager;
     String currMail;
 
+    @PostConstruct
+    public void init1() {
+        patientMemoryManager.getpatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", "22.10.1984"));
+        patientMemoryManager.getpatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", "13.02.1978"));    }
 
     @GetMapping("/telemedapp/add_patient")
     String save(@RequestParam String name,

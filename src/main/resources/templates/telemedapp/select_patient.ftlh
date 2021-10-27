@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <title>Zapisi pacijenta</title>
+    <link rel="stylesheet" href="..telemedapp/style.css">
+</head>
+
+<body>
+<div class="container">
+<form action="/telemedapp/select_patient">
+        <div class="viewForm">
+        <div class="header">
+        <img class="logo" src="../telemedapp/logoMegi.png">
+        <h1>Zapisi pacijenta</h1>
+        </div>
+        <div class="patient">
+             <div class="col-md-6">
+             <label class="form-label">Ime i prezime:</label>
+            <#foreach patient in patientList>
+                ${patient.name} ${patient.surname}
+              <div class="col-md-6">
+                             <label class="form-label">Korisnik:</label>
+                                  ${patient.email}
+                            </div>
+            </#foreach>
+            </div>
+        </div>
+
+        <h2>Zapisi</h2>
+        <table class="table table-striped table-hover">
+        <thead><tr>
+            <th>Datum</th>
+            <th>Sistolički tlak</th>
+            <th>Dijastolički tlak</th>
+            <th>Opis</th>
+        </tr><thead>
+
+        <#list recordList as record>
+       <tr>
+              <td>${record.timestamp?string["dd.MM.yyyy hh:mm"]}</td>
+              <td>${record.bloodPressure1}</td>
+              <td>${record.bloodPressure2}</td>
+              <td>${record.description}</td>
+        </tr>
+        </#list>
+        </table>
+        </div>
+        </div>
+</body>
+</html>
