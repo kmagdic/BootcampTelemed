@@ -22,15 +22,19 @@ public class DoctorInterfaceController {
                 @RequestParam String surname,
                 @RequestParam String email,
                 @RequestParam String date){
-        Patient patient = new Patient(name,surname,email,date);
-        patientMemoryManager.getpatientList().add(patient);
-       System.out.println("You entered:\nEmail: " + name + "\n" +
-                "Systolic pressure: " + surname + "\n" +
-                "Diastolic pressure: " + email + "\n" +
-                "Date: " + date);
-        currMail = email;
+        if (patientMemoryManager.findPatient(email)) {
+            return "/telemedapp/email_yesindb.html";
+        }else {
+            Patient patient = new Patient(name, surname, email, date);
+            patientMemoryManager.getpatientList().add(patient);
+            System.out.println("You entered:\nEmail: " + name + "\n" +
+                    "Systolic pressure: " + surname + "\n" +
+                    "Diastolic pressure: " + email + "\n" +
+                    "Date: " + date);
+            currMail = email;
 
-        return "redirect:/telemedapp/list_patients";
+            return "redirect:/telemedapp/list_patients";
+        }
     }
 
     @GetMapping("/telemed_doctor/")
