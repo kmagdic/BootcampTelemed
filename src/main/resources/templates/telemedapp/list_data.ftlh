@@ -18,7 +18,7 @@
         <h2>Korisnik:</h2>
             ${mail}<br/>
         <div class="col-md-12">
-            <button type="button" onclick="history.back()" class="btn btn-secondary">Dodaj novi zapis</button>
+            <a href="/telemedapp/" class="btn btn-secondary">Dodaj novi zapis</a>
         </div>
         <h1>Zapisi pacijenta</h1>
 <table class="table table-striped table-hover">

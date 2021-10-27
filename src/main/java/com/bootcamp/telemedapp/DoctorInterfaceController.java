@@ -7,6 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 
 
@@ -14,29 +18,42 @@ import javax.annotation.PostConstruct;
 public class DoctorInterfaceController {
 
     @Autowired
-    PatientMemoryManager patientMemoryManager;
+    PatientDBManager patientMemoryManager;
 
     @Autowired
     RecordMemoryManager databaseManager;
-    String currMail;
 
     @PostConstruct
     public void init1() {
-        patientMemoryManager.getpatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", "22.10.1984"));
-        patientMemoryManager.getpatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", "13.02.1978"));    }
+        patientMemoryManager.getPatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", "22.10.1984"));
+        patientMemoryManager.getPatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", "13.02.1978"));    }
 
     @GetMapping("/telemedapp/add_patient")
     String save(@RequestParam String name,
                 @RequestParam String surname,
                 @RequestParam String email,
                 @RequestParam String date){
-        Patient patient = new Patient(name,surname,email,date);
-        patientMemoryManager.getpatientList().add(patient);
-       System.out.println("You entered:\nEmail: " + name + "\n" +
+
+        // parsing date
+        Date date1 = null;
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            System.out.println("Date is not in correct format: " + date);
+        }
+
+        Patient patient = new Patient(name, surname, email, date1);
+        patientMemoryManager.getPatientList().add(patient);
+
+        // PatientDBManager
+        PatientDBManager newconnection = new PatientDBManager();
+        newconnection.makeConnection();
+        newconnection.addPatient(patient);
+
+        System.out.println("You entered:\nEmail: " + name + "\n" +
                 "Systolic pressure: " + surname + "\n" +
                 "Diastolic pressure: " + email + "\n" +
                 "Date: " + date);
-        currMail = email;
 
         return "redirect:/telemedapp/list_patients";
     }
