@@ -114,4 +114,16 @@ public class PatientDBManager {
             throwables.printStackTrace();
         }
     }
+    public Object delete(String email) {
+
+        String sql = "DELETE FROM patient where email = '"+ email + "'";
+        try {
+            Connection conn = this.conn;
+            Statement statement = conn.createStatement();
+            int r =  statement.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

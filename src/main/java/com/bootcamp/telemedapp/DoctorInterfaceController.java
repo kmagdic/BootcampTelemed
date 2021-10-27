@@ -81,4 +81,9 @@ public class DoctorInterfaceController {
         model.addAttribute("recordList", databaseManager.getPatientRecords(email));
         return "/telemedapp/select_patient";
     }
+    @GetMapping("/telemedapp/delete_patient")
+    String delete(Model model, @RequestParam String email) {
+        model.addAttribute("patient", patientManager.delete(email));
+        return "/telemedapp/list_patients";
+    }
 }
