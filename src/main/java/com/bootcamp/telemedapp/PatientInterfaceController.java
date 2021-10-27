@@ -17,6 +17,8 @@ public class PatientInterfaceController {
 
     @Autowired
     RecordMemoryManager databaseManager;
+    @Autowired
+    PatientMemoryManager patientMemoryManager;
     String currMail;
 
 
@@ -32,27 +34,28 @@ public class PatientInterfaceController {
     }
 
     @GetMapping("/telemedapp/save_data")
-    String save (
+    String save(
             @RequestParam String email,
             @RequestParam String bloodPressure1,
             @RequestParam String bloodPressure2,
             @RequestParam String description,
             HttpServletResponse response) throws IOException {
+        if (!patientMemoryManager.findPatient(email)) {
+            return "/telemedapp/email_indb.html";
+        }else
         System.out.println("You entered:\nEmail: " + email + "\n" +
                 "Systolic pressure: " + bloodPressure1 + "\n" +
                 "Diastolic pressure: " + bloodPressure2 + "\n" +
                 "State: " + description);
-
         currMail = email;
-
-        BloodPressureRecord record = new BloodPressureRecord(new Date(), email,bloodPressure1,bloodPressure2,description);
+        BloodPressureRecord record = new BloodPressureRecord(new Date(), email, bloodPressure1, bloodPressure2, description);
         databaseManager.getRecordList().add(record);
 
         return "redirect:/telemedapp/list_data";
     }
 
     @GetMapping("/telemedapp/list_data")
-    String listAll (Model model) throws IOException {
+    String listAll(Model model) throws IOException {
 
         model.addAttribute("mail", currMail);
         model.addAttribute("recordList", databaseManager.getPatientRecords(currMail));

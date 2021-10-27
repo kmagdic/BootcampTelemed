@@ -4,13 +4,14 @@ package com.bootcamp.telemedapp;
 import com.bootcamp.telemedapp.model.Patient;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PatientMemoryManager {
 
-    List<Patient> patientList  = new ArrayList<Patient>();
+    List<Patient> patientList = new ArrayList<Patient>();
 
     public List<Patient> getpatientList() {
         return patientList;
@@ -25,4 +26,17 @@ public class PatientMemoryManager {
         return patientRecord;
     }
 
+    public boolean findPatient(String email) {
+        boolean query = false;
+        for (Patient p : patientList) {
+            if (p.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return query;
+    }
+
+    public void alertBox(String s){
+        JOptionPane.showMessageDialog(null, s);
+    }
 }

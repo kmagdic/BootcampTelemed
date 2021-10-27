@@ -47,6 +47,13 @@
         border: none!Important;
     }
 
+    .btn-try {
+            background-color: #ac1c44!Important;
+            color:white!Important;
+            float: left;
+            border: none!Important;
+        }
+
     .btn-odabir:hover {
         background-color: #000!Important;
     }
@@ -54,3 +61,7 @@
     .btn-secondary:hover{
         background-color:#000!Important;
     }
+
+    .btn-try:hover{
+            background-color:#000!Important;
+        }
