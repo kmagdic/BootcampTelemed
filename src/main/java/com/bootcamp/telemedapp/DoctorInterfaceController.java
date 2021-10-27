@@ -7,14 +7,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 public class DoctorInterfaceController {
 
     @Autowired
-    PatientMemoryManager patientMemoryManager;
+    PatientDBManager patientMemoryManager;
+
+    @Autowired
     RecordMemoryManager databaseManager;
-    String currMail;
 
 
     @GetMapping("/telemedapp/add_patient")
@@ -22,13 +27,27 @@ public class DoctorInterfaceController {
                 @RequestParam String surname,
                 @RequestParam String email,
                 @RequestParam String date){
-        Patient patient = new Patient(name,surname,email,date);
-        patientMemoryManager.getpatientList().add(patient);
-       System.out.println("You entered:\nEmail: " + name + "\n" +
+
+        // parsing date
+        Date date1 = null;
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            System.out.println("Date is not in correct format: " + date);
+        }
+
+        Patient patient = new Patient(name, surname, email, date1);
+        patientMemoryManager.getPatientList().add(patient);
+
+        // PatientDBManager
+        PatientDBManager newconnection = new PatientDBManager();
+        newconnection.makeConnection();
+        newconnection.addPatient(patient);
+
+        System.out.println("You entered:\nEmail: " + name + "\n" +
                 "Systolic pressure: " + surname + "\n" +
                 "Diastolic pressure: " + email + "\n" +
                 "Date: " + date);
-        currMail = email;
 
         return "redirect:/telemedapp/list_patients";
     }
@@ -41,7 +60,7 @@ public class DoctorInterfaceController {
 
     @GetMapping("/telemedapp/list_patients")
     String listAll(Model model)  {
-        model.addAttribute("patientList", patientMemoryManager.getpatientList());
+        model.addAttribute("patientList", patientMemoryManager.getPatientList());
         return "/telemedapp/list_patients_";
     }
 
@@ -49,7 +68,7 @@ public class DoctorInterfaceController {
 
     String select(Model model, @RequestParam String email) {
 
-        model.addAttribute("patientList", patientMemoryManager.getPatient(email));
+        model.addAttribute("patientList", patientMemoryManager.getPatientByEmail(email));
         model.addAttribute("recordList", databaseManager.getPatientRecords(email));
         return "/telemedapp/select_patient";
     }

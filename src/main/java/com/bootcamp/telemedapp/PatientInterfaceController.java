@@ -16,15 +16,18 @@ import java.util.Date;
 public class PatientInterfaceController {
 
     @Autowired
-    RecordMemoryManager databaseManager;
+    RecordMemoryManager recordManager;
+
     @Autowired
-    PatientMemoryManager patientMemoryManager;
+    PatientDBManager patientManager;
+
+
     String currMail;
 
 
     @PostConstruct
     public void init() {
-        databaseManager.getRecordList().add(
+        recordManager.getRecordList().add(
                 new BloodPressureRecord(new Date(), "email1", "Prvi tlak", "Drugi tlak", "Opis stanja"));
     }
 
@@ -40,16 +43,16 @@ public class PatientInterfaceController {
             @RequestParam String bloodPressure2,
             @RequestParam String description,
             HttpServletResponse response) throws IOException {
-        if (!patientMemoryManager.findPatient(email)) {
+        if (patientManager.getPatientByEmail(email) == null) {
             return "/telemedapp/email_indb.html";
-        }else
+        } else
         System.out.println("You entered:\nEmail: " + email + "\n" +
                 "Systolic pressure: " + bloodPressure1 + "\n" +
                 "Diastolic pressure: " + bloodPressure2 + "\n" +
                 "State: " + description);
         currMail = email;
         BloodPressureRecord record = new BloodPressureRecord(new Date(), email, bloodPressure1, bloodPressure2, description);
-        databaseManager.getRecordList().add(record);
+        recordManager.getRecordList().add(record);
 
         return "redirect:/telemedapp/list_data";
     }
@@ -57,8 +60,10 @@ public class PatientInterfaceController {
     @GetMapping("/telemedapp/list_data")
     String listAll(Model model) throws IOException {
 
-        model.addAttribute("mail", currMail);
-        model.addAttribute("recordList", databaseManager.getPatientRecords(currMail));
+        model.addAttribute("patient", patientManager.getPatientByEmail(currMail));
+        model.addAttribute("recordList", recordManager.getPatientRecords(currMail));
+
+
         return "/telemedapp/list_data";
 
     }

@@ -1,27 +1,29 @@
 package com.bootcamp.telemedapp.model;
 
+import java.util.Date;
+
 public class Patient {
     private String name;
     private String surname;
     private String email;
-    private String date;
+    private Date dateOfBirth;
 
     public Patient() {
     }
 
-    public Patient(String name, String surname, String email, String date) {
+    public Patient(String name, String surname, String email, Date date) {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.date = date;
+        this.dateOfBirth = date;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -48,4 +50,13 @@ public class Patient {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
+    }
 }
