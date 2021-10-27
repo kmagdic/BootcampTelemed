@@ -24,9 +24,12 @@ public class DoctorInterfaceController {
     RecordMemoryManager databaseManager;
 
     @PostConstruct
-    public void init1() {
-        patientMemoryManager.getPatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", "22.10.1984"));
-        patientMemoryManager.getPatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", "13.02.1978"));    }
+    public void init1() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+        patientMemoryManager.getPatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", sdf.parse("22.10.1984")));
+        patientMemoryManager.getPatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", sdf.parse("13.02.1978")));
+    }
 
     @GetMapping("/telemedapp/add_patient")
     String save(@RequestParam String name,
@@ -66,7 +69,7 @@ public class DoctorInterfaceController {
 
     @GetMapping("/telemedapp/list_patients")
     String listAll(Model model)  {
-        model.addAttribute("patientList", patientMemoryManager.getpatientList());
+        model.addAttribute("patientList", patientMemoryManager.getPatientList());
         return "/telemedapp/list_patients_";
     }
 
@@ -74,7 +77,7 @@ public class DoctorInterfaceController {
 
     String select(Model model, @RequestParam String email) {
 
-        model.addAttribute("patientList", patientMemoryManager.getPatient(email));
+        model.addAttribute("patientList", patientMemoryManager.getPatientByEmail(email));
         model.addAttribute("recordList", databaseManager.getPatientRecords(email));
         return "/telemedapp/select_patient";
     }
