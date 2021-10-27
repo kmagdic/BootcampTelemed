@@ -20,13 +20,10 @@
         <div class="patient">
              <div class="col-md-6">
              <label class="form-label">Ime i prezime:</label>
-            <#foreach patient in patientList>
                 ${patient.name} ${patient.surname}
-              <div class="col-md-6">
-                             <label class="form-label">Korisnik:</label>
-                                  ${patient.email}
-                            </div>
-            </#foreach>
+             <label class="form-label">E-mail:</label>
+                 ${patient.email}
+             </div>
             </div>
         </div>
 
@@ -40,7 +37,7 @@
         </tr><thead>
 
         <#list recordList as record>
-       <tr>
+        <tr>
               <td>${record.timestamp?string["dd.MM.yyyy hh:mm"]}</td>
               <td>${record.bloodPressure1}</td>
               <td>${record.bloodPressure2}</td>

@@ -16,7 +16,7 @@
         <img class="logo" src="../telemedapp/logoMegi.png">
         </div>
         <h2>Korisnik:</h2>
-            ${mail}<br/>
+            ${patient.email}<br/>
         <div class="col-md-12">
             <a href="/telemedapp/" class="btn btn-secondary">Dodaj novi zapis</a>
         </div>

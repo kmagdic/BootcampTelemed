@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 public class DoctorInterfaceController {
 
     @Autowired
-    PatientDBManager patientMemoryManager;
+    PatientDBManager patientManager;
 
     @Autowired
     RecordMemoryManager databaseManager;
@@ -27,8 +27,8 @@ public class DoctorInterfaceController {
     public void init1() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-        patientMemoryManager.getPatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", sdf.parse("22.10.1984")));
-        patientMemoryManager.getPatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", sdf.parse("13.02.1978")));
+        //patientManager.getPatientList().add(new Patient("Pero", "Perić", "pero.peric@gmail.com", sdf.parse("22.10.1984")));
+        //patientManager.getPatientList().add(new Patient("Ivo", "Ivić", "ivi.ivic@gmail.com", sdf.parse("13.02.1978")));
     }
 
     @GetMapping("/telemedapp/add_patient")
@@ -46,7 +46,7 @@ public class DoctorInterfaceController {
         }
 
         Patient patient = new Patient(name, surname, email, date1);
-        patientMemoryManager.getPatientList().add(patient);
+        patientManager.getPatientList().add(patient);
 
         // PatientDBManager
         PatientDBManager newconnection = new PatientDBManager();
@@ -69,7 +69,7 @@ public class DoctorInterfaceController {
 
     @GetMapping("/telemedapp/list_patients")
     String listAll(Model model)  {
-        model.addAttribute("patientList", patientMemoryManager.getPatientList());
+        model.addAttribute("patientList", patientManager.getPatientList());
         return "/telemedapp/list_patients_";
     }
 
@@ -77,7 +77,7 @@ public class DoctorInterfaceController {
 
     String select(Model model, @RequestParam String email) {
 
-        model.addAttribute("patientList", patientMemoryManager.getPatientByEmail(email));
+        model.addAttribute("patient", patientManager.getPatientByEmail(email));
         model.addAttribute("recordList", databaseManager.getPatientRecords(email));
         return "/telemedapp/select_patient";
     }
