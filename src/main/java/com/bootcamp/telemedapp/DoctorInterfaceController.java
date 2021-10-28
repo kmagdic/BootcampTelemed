@@ -21,7 +21,7 @@ public class DoctorInterfaceController {
     PatientDBManager patientManager;
 
     @Autowired
-    RecordMemoryManager databaseManager;
+    RecordDBManager databaseManager;
 
     @PostConstruct
     public void init1() throws ParseException {

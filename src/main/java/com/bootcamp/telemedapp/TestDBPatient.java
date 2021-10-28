@@ -1,4 +1,4 @@
-package com.bootcamp;
+package com.bootcamp.telemedapp;
 
 import com.bootcamp.telemedapp.PatientDBManager;
 import com.bootcamp.telemedapp.model.Patient;
@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 public class TestDBPatient {
 
 
-    public static void main(String[] args) throws ParseException {
+    public static void createInitialData() throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 

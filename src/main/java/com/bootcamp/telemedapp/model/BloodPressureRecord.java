@@ -60,4 +60,15 @@ public class BloodPressureRecord {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "BloodPressureRecord{" +
+                "timestamp=" + timestamp +
+                ", email='" + email + '\'' +
+                ", bloodPressure1='" + bloodPressure1 + '\'' +
+                ", bloodPressure2='" + bloodPressure2 + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

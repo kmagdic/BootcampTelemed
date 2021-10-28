@@ -6,17 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 
 @Controller
 public class PatientInterfaceController {
 
     @Autowired
-    RecordMemoryManager recordManager;
+    RecordDBManager recordManager;
 
     @Autowired
     PatientDBManager patientManager;
@@ -52,7 +54,8 @@ public class PatientInterfaceController {
                 "State: " + description);
         currMail = email;
         BloodPressureRecord record = new BloodPressureRecord(new Date(), email, bloodPressure1, bloodPressure2, description);
-        recordManager.getRecordList().add(record);
+//        recordManager.getRecordList().add(record);
+        recordManager.addRecord(record);
 
         return "redirect:/telemedapp/list_data";
     }
@@ -67,4 +70,13 @@ public class PatientInterfaceController {
         return "/telemedapp/list_data";
 
     }
+
+    @GetMapping("/telemedapp/initdata")
+    @ResponseBody String initData() throws ParseException {
+        TestDBPatient.createInitialData();
+        TestDBRecord.createInitalData();
+        return "OK";
+    }
+
+
 }
