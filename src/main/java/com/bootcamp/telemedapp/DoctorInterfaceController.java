@@ -44,21 +44,26 @@ public class DoctorInterfaceController {
         } catch (ParseException e) {
             System.out.println("Date is not in correct format: " + date);
         }
+        if (patientManager.isEmailInDatabase(email)) {
+            return "/telemedapp/email_yesindb.html";
+        } else {
 
-        Patient patient = new Patient(name, surname, email, date1);
-        patientManager.getPatientList().add(patient);
+            Patient patient = new Patient(name, surname, email, date1);
+            patientManager.getPatientList().add(patient);
 
-        // PatientDBManager
-        PatientDBManager newconnection = new PatientDBManager();
-        newconnection.makeConnection();
-        newconnection.addPatient(patient);
+            // PatientDBManager
+            PatientDBManager newconnection = new PatientDBManager();
+            newconnection.makeConnection();
+            newconnection.addPatient(patient);
 
-        System.out.println("You entered:\nEmail: " + name + "\n" +
-                "Systolic pressure: " + surname + "\n" +
-                "Diastolic pressure: " + email + "\n" +
-                "Date: " + date);
+            System.out.println("You entered:\nEmail: " + name + "\n" +
+                    "Systolic pressure: " + surname + "\n" +
+                    "Diastolic pressure: " + email + "\n" +
+                    "Date: " + date);
+            newconnection.closeConnection();
 
-        return "redirect:/telemedapp/list_patients";
+            return "redirect:/telemedapp/list_patients";
+        }
     }
 
     @GetMapping("/telemed_doctor/")

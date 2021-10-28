@@ -1,6 +1,7 @@
 package com.bootcamp.telemedapp;
 
 import com.bootcamp.telemedapp.model.BloodPressureRecord;
+import com.bootcamp.telemedapp.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class PatientInterfaceController {
                 new BloodPressureRecord(new Date(), "email1", "Prvi tlak", "Drugi tlak", "Opis stanja"));
     }
 
-    @GetMapping("/telemedapp/")
+    @GetMapping("/")
     String root() {
         return "redirect:/telemedapp/enter_data.html";
     }

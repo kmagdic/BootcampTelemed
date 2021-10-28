@@ -74,6 +74,24 @@ public class PatientDBManager {
 
         return null;
     }
+    public boolean isEmailInDatabase(String email) {
+
+        String sql = "SELECT email FROM patient";
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                if (email.equals(resultSet.getString("email"))) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
 
 
     public List<Patient> getPatientList() {
@@ -125,5 +143,12 @@ public class PatientDBManager {
             throwables.printStackTrace();
         }
         return null;
+    }
+    public void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

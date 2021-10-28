@@ -23,7 +23,7 @@
                 <th>Ime i prezime</th>
                 <th>E-mail adresa</th>
                 <th>Datum rođenja</th>
-                <th>Akcija</th>
+                <th class="action" colspan="2">Akcija</th>
                  </tr></thead>
 
             <#foreach patient in patientList>
@@ -31,8 +31,7 @@
                 <td>${patient.name} ${patient.surname}</td>
                 <td>${patient.email}</td>
                 <td>${patient.dateOfBirth?string["dd.MM.yyyy"]}</td>
-                <td><a class="btn btn-odabir" href="../telemedapp/delete_patient?email=${patient.email}">Obriši</a></td>
-                <td><a class="btn btn-odabir" href="../telemedapp/select_patient?email=${patient.email}">Odabir</a></td>
+                <td><a class="btn btn-odabir" href="../telemedapp/delete_patient?email=${patient.email}">Obriši</a><a class="btn btn-odabir" href="../telemedapp/select_patient?email=${patient.email}">Odabir</a></td>
             </tr>
             </#foreach>
 
@@ -46,22 +45,22 @@
 
             <div class="col-md-6">
                 <label class="form-label">Ime</label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name" class="form-control" required>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Prezime</label>
-                <input type="text" name="surname" class="form-control">
+                <input type="text" name="surname" class="form-control" required>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">E-mail</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" name="email" class="form-control" #if(patient.getEmail().equals(email)) required>
             </div>
 
             <div class="col-md-6">
                  <label class="form-label">Datum rođenja</label>
-                 <input type="date" name="date" class="form-control">
+                 <input type="date" name="date" class="form-control" required>
             </div>
 
             <div class="col-6">
