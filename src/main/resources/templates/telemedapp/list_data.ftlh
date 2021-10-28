@@ -18,7 +18,7 @@
         <h2>Korisnik:</h2>
             ${patient.email}<br/>
         <div class="col-md-12">
-            <a href="/telemedapp/" class="btn btn-secondary">Dodaj novi zapis</a>
+            <a href="/" class="btn btn-secondary">Dodaj novi zapis</a>
         </div>
         <h1>Zapisi pacijenta</h1>
 <table class="table table-striped table-hover">
