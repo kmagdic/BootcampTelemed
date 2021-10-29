@@ -36,9 +36,6 @@ public class PatientMemoryManager {
         return query;
     }
 
-    public void alertBox(String s){
-        JOptionPane.showMessageDialog(null, s);
-    }
 
     public Patient getPatientByEmail(String currMail) {
         for (Patient p : patientList) {

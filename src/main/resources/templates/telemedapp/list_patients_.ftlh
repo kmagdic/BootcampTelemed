@@ -31,7 +31,7 @@
                 <td>${patient.name} ${patient.surname}</td>
                 <td>${patient.email}</td>
                 <td>${patient.dateOfBirth?string["dd.MM.yyyy"]}</td>
-                <td><a class="btn btn-odabir" href="../telemedapp/delete_patient?email=${patient.email}">Obriši</a><a class="btn btn-odabir" href="../telemedapp/select_patient?email=${patient.email}">Odabir</a></td>
+                <td><div class="action"><a class="btn btn-odabir" href="../telemedapp/delete_patient?email=${patient.email}">Obriši</a><a class="btn btn-odabir" href="../telemedapp/select_patient?email=${patient.email}">Odabir</a></div></td>
             </tr>
             </#foreach>
 

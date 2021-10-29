@@ -43,8 +43,7 @@
     .btn-odabir {
         background-color: #ac1c44!Important;
         color:white!Important;
-        float:right;
-        margin:5px;
+        margin:0px 20px;
         border: none!Important;
     }
 
@@ -53,7 +52,7 @@
             color:white!Important;
             float: left;
             border: none!Important;
-        }
+    }
 
     .btn-odabir:hover {
         background-color: #000!Important;
@@ -66,15 +65,26 @@
 
     .btn-try:hover{
             background-color:#000!Important;
-        }
+     }
+
     .action{
             text-align: center;
-            }
+    }
+
     .btn-dodaj{
         background-color: #ac1c44!Important;
         color:white!Important;
-        margin-left:47%;
-        margin-top:5px;
+        margin-top:10px;
+        text-align:center;
         border: none!Important;
         font-size: 25px;
+        border: none!Important;
             }
+
+    .btn-dodaj:hover{
+                background-color:#000!Important;
+         }
+
+    .wrapper {
+       text-align: center;
+    }
