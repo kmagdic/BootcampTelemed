@@ -82,9 +82,14 @@
             }
 
     .btn-dodaj:hover{
-                background-color:#000!Important;
+         background-color:#000!Important;
          }
-
+    .btn btn-doctor {
+        background-color: #ac1c44!Important;
+        color:white!Important;
+        float: right;
+        border: none!Important;
+    }
     .wrapper {
        text-align: center;
     }

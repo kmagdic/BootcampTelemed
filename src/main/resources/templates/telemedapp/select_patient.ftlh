@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <title>Zapisi pacijenta</title>
-    <link rel="stylesheet" href="..telemedapp/style.css">
+    <link rel="stylesheet" href="../telemedapp/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
              <div class="col-md-6">
              <label class="form-label">Ime i prezime:</label>
                 ${patient.name} ${patient.surname}
-             <label class="form-label">E-mail:</label>
+             </br><label class="form-label">E-mail:</label>
                  ${patient.email}
              </div>
             </div>
